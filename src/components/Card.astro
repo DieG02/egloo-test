@@ -1,0 +1,84 @@
+---
+import { 
+  Wine, 
+  Utensils,
+  Trees,
+  Clock, 
+  ArrowRight, 
+  type AstroComponent  
+} from '@lucide/astro';
+import "../styles/card.css";
+
+export type Service = 'wine' | 'food' | 'tour';
+
+export interface CardProps {
+  image: string;
+  services: Service[];
+  duration: number;
+  title: string;
+  description: string;
+  price: string;
+  priceDetails?: 'single' | 'minimum';
+  type?: 'normal' | 'full';
+}
+
+const {
+  image,
+  services,
+  duration,
+  title,
+  description,
+  price,
+  priceDetails = "single",
+  type = 'normal'
+} = Astro.props;
+
+// Map service names to Lucide icon names
+const icons: Record<Service, AstroComponent> = {
+  wine: Wine,
+  food: Utensils,
+  tour: Trees,
+};
+
+---
+
+<div class={`card ${type}`}>
+  <div class="card-image-container">
+    <img src={image} alt={title} />
+  </div>
+
+  <div class="card-content">
+    <div class="card-icons">
+      {services.map((service: Service) => {
+        const Icon = icons[service];
+        return <Icon class="icon-wrapper" size={24} stroke-width={1} />;
+      })}
+      <Clock size={24} stroke-width={1}/>
+      <span>{duration}’</span>
+    </div>
+
+    <h3>{title}</h3>
+    <hr class="divider" />
+    <p class="content-description">{description}</p>
+    
+    <div class="price-section">
+      <p>PREZZO</p>
+      <p>
+        <span class="price-value">{
+          priceDetails === 'single' 
+            ? `€${price} a persona`
+            : `A parire da €${price}`
+          }
+        </span>
+        <span class="price-badge">IVA INCLUSA</span>
+      </p>
+    </div>
+
+    <div class="button-container">
+      <a href="#" class="details-button">
+        Dettagli
+        <ArrowRight size={24} stroke-width={1} />
+      </a>
+    </div>
+  </div>
+</div>

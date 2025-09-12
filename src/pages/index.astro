@@ -1,4 +1,9 @@
 ---
+import Card from '../components/Card.astro';
+import Header from '../components/Header.astro';
+import source from '../utils/source.json';
+import type { CardProps } from '../components/Card.astro';
+import '../styles/global.css'
 
 ---
 
@@ -8,9 +13,45 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Federo&family=M+PLUS+2:wght@100..900&display=swap" rel="stylesheet">
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<Header />
+		<main>
+			<div class="box-title">
+				<h1>Prenota subito l’esperienza più adatta a te!</h1>
+				<h2>Ti aspettiamo per farti scoprire il mondo, raccontato dai nostri vini e dalla nostra storia.</h2>
+			</div>
+			<div class="card-container">
+				{source.data.map(item => (
+					<Card
+						image={item.image}
+						title={item.title}
+						description={item.description}
+						price={item.price}
+						duration={item.duration}
+						services={item.services as any}
+						priceDetails={item.priceDetails}
+						type={item.type}
+					/>
+				))}
+			</div>
+		</main>
 	</body>
+	<style>
+		.card-container {
+			display: grid;
+			margin: 4rem 0rem;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 1rem;
+		}
+		.card-item {
+			grid-column: 1fr;
+			background-color: white;
+		}
+	</style>
 </html>

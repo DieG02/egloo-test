@@ -1,0 +1,125 @@
+---
+import { ChevronDown } from '@lucide/astro';
+import "../styles/header.css"
+
+export interface Props {
+  label: string;
+  icon?: any
+}
+const { label, icon: Icon } = Astro.props;
+---
+
+<div class="dropdown-container">
+  <a href="#" class="dropdown-toggle">
+    {Icon && <Icon size={18} stroke-width={1}/>}
+    <span>{label}</span>
+    <ChevronDown size={16} color="#AAA"/> 
+  </a>
+  <div class="dropdown-menu">
+    <ul>
+      <slot />
+    </ul>
+  </div>
+</div>
+
+<style>
+  .dropdown-container {
+    position: relative;
+  }
+
+  /* .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  } */
+
+  /* .dropdown-toggle:hover {
+    color: #888;
+  } */
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(0.5rem); /* Add a small vertical offset */
+    margin-top: 1rem;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    z-index: 10;
+  }
+
+  .dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .dropdown-menu ul {
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+  }
+
+  .dropdown-toggle .lucide-icon {
+    color: #888;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .dropdown-container.is-active .lucide-icon {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  const toggleLinks = document.querySelectorAll('.dropdown-toggle');
+  
+  toggleLinks.forEach(toggleLink => {
+    const parent = toggleLink.closest('.dropdown-container');
+    const dropdownMenu = parent!.querySelector('.dropdown-menu');
+
+    toggleLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isActive = parent!.classList.contains('is-active');
+
+      // Close all other dropdowns
+      document.querySelectorAll('.dropdown-container.is-active').forEach(openDropdown => {
+        if (openDropdown !== parent) {
+          openDropdown.classList.remove('is-active');
+        }
+      });
+      
+      // Toggle the current dropdown
+      parent!.classList.toggle('is-active', !isActive);
+    });
+    
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!parent!.contains(e.target as any)) {
+        parent!.classList.remove('is-active');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,26 @@
+---
+import Logo from '../assets/google.svg';
+import Dropdown from './Dropdown.astro';
+import { Globe } from '@lucide/astro';
+import "../styles/header.css"
+---
+<div class="header-container">
+  <header>
+    <nav class="nav-left">
+      <Dropdown label="Identità"/>
+      <a href="#">Vini</a>
+      <a href="#">Devin Cosmetica</a>
+    </nav>
+  
+    <div class="logo">
+      <Logo height={72} width={200}/>
+    </div>
+  
+    <nav class="nav-right">
+      <Dropdown label="Esperienza"/>
+      <a href="#">Gift Card</a>
+      <a href="#">Store Locator</a>
+      <Dropdown icon={Globe} label="IT"/>
+    </nav>
+  </header>
+</div>
