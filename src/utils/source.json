@@ -1,0 +1,102 @@
+{
+  "data": [
+    {
+      "id": "001",
+      "image": "https://images.pexels.com/photos/5732808/pexels-photo-5732808.jpeg",
+      "services": [
+        "wine"
+      ],
+      "title": "3 WINES EXPERIENCE",
+      "description": "Degustazione di tre vini al Rifugio del Vino e visita alla cantina e alla cantina",
+      "duration": 60,
+      "price": "25,00",
+      "priceDetails": "single",
+      "type": "normal"
+    },
+    {
+      "id": "002",
+      "image": "https://images.pexels.com/photos/51947/tuscany-grape-field-nature-51947.jpeg",
+      "services": [
+        "wine",
+        "food"
+      ],
+      "title": "5 WINES EXPERIENCE",
+      "description": "Degustazione di 6 vini del territorio presso il rifugio del vini in cantina e barricala",
+      "duration": 90,
+      "price": "34,00",
+      "priceDetails": "single",
+      "type": "normal"
+    },
+    {
+      "id": "003",
+      "image": "https://images.pexels.com/photos/6667210/pexels-photo-6667210.jpeg",
+      "services": [
+        "wine",
+        "food"
+      ],
+      "title": "WINE AND CHEESE EXPERIENCE",
+      "description": "Degustazione di 5 vini selezionati in abbinamento a 6 formaggi locali e visita alla cantina e barricaia",
+      "duration": 90,
+      "price": "45.00",
+      "priceDetails": "single",
+      "type": "normal"
+    },
+    {
+      "id": "004",
+      "image": "https://images.pexels.com/photos/2954929/pexels-photo-2954929.jpeg",
+      "services": [
+        "wine",
+        "food"
+      ],
+      "title": "TOP WINES EXPERIENCE",
+      "description": "Degustazione di 6 vini di alta qualità accompagnati da un tagliere della gastronomia locale e visita alla cantina e barricala",
+      "duration": 100,
+      "price": "65,00",
+      "priceDetails": "single",
+      "type": "normal"
+    },
+    {
+      "id": "005",
+      "image": "https://images.pexels.com/photos/1731834/pexels-photo-1731834.jpeg",
+      "services": [
+        "wine",
+        "food"
+      ],
+      "title": "CÔTEAU LA TOUR EXPERIENCE",
+      "description": "Degustazione di 5 vini accompagnati da un tagliere della gastronomia locale e visita in cantina e barricaia.\nTour del vigneto di Coteau e brindisi nella torre medievale",
+      "duration": 120,
+      "price": "75.00",
+      "priceDetails": "single",
+      "type": "normal"
+    },
+    {
+      "id": "006",
+      "image": "https://images.pexels.com/photos/5529576/pexels-photo-5529576.jpeg",
+      "services": [
+        "wine",
+        "tour"
+      ],
+      "title": "WINEMAKER'S EXPERIENCE",
+      "description": "Scopri il mondo, raccontato dal nostro enologo Raffaele, dai vigneti alla cantina",
+      "duration": 100,
+      "price": "90.00",
+      "priceDetails": "single",
+      "type": "normal"
+    },
+    {
+      "id": "007",
+      "image": "https://images.pexels.com/photos/5697222/pexels-photo-5697222.jpeg",
+      "services": [
+        "wine",
+        "food",
+        "tour"
+      ],
+      "title": "CÔTEAU LA TOUR EXPERIENCE",
+      "description": "Degustazione di 5 vini accompagnati da un tagliere della gastronomia locale e visita in cantina e barricaia.\nTour del vigneto di Coteau e brindisi nella torre medievale",
+      "duration": 90,
+      "price": "346,00",
+      "priceDetails": "minimum",
+      "type": "full"
+    }
+  ]
+}
