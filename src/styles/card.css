@@ -28,7 +28,6 @@
 .full {
   .card-image-container {
     display: flex;
-    background: black;
     grid-column: span 2;
     grid-row: 1;
     max-height: 400px;
