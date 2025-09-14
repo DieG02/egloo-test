@@ -2,8 +2,7 @@
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro';
 import source from '../utils/source.json';
-import '../styles/global.css'
-
+import '../styles/global.css';
 ---
 
 <html lang="en">
@@ -33,7 +32,7 @@ import '../styles/global.css'
 						description={item.description}
 						price={item.price}
 						duration={item.duration}
-						services={item.services as any}
+						services={item.services}
 						priceDetails={item.priceDetails}
 						type={item.type}
 					/>
@@ -41,16 +40,4 @@ import '../styles/global.css'
 			</div>
 		</main>
 	</body>
-	<style>
-		.card-container {
-			display: grid;
-			margin: 4rem 0rem;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 1rem;
-		}
-		.card-item {
-			grid-column: 1fr;
-			background-color: white;
-		}
-	</style>
 </html>

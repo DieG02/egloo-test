@@ -29,3 +29,14 @@ main {
   font-weight: 500;
   color: #555
 }
+
+.card-container {
+  display: grid;
+  margin: 4rem 0rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+.card-item {
+  grid-column: 1fr;
+  background-color: white;
+}

@@ -6,10 +6,10 @@ import {
   Clock, 
   ArrowRight, 
   type AstroComponent  
-} from '@lucide/astro';
+} from "@lucide/astro";
 import "../styles/card.css";
 
-export type Service = 'wine' | 'food' | 'tour';
+export type Service = "wine" | "food" | "tour";
 
 export interface CardProps {
   image: string;
@@ -18,8 +18,8 @@ export interface CardProps {
   title: string;
   description: string;
   price: string;
-  priceDetails?: 'single' | 'minimum';
-  type?: 'normal' | 'full';
+  priceDetails?: "single" | "minimum";
+  type?: "normal" | "full";
 }
 
 const {
@@ -30,16 +30,15 @@ const {
   description,
   price,
   priceDetails = "single",
-  type = 'normal'
+  type = "normal"
 } = Astro.props;
 
-// Map service names to Lucide icon names
+// Map service names to Lucide Icons
 const icons: Record<Service, AstroComponent> = {
   wine: Wine,
   food: Utensils,
   tour: Trees,
 };
-
 ---
 
 <div class={`card ${type}`}>
@@ -65,7 +64,7 @@ const icons: Record<Service, AstroComponent> = {
       <p>PREZZO</p>
       <p>
         <span class="price-value">{
-          priceDetails === 'single' 
+          priceDetails === "single" 
             ? `€${price} a persona`
             : `A parire da €${price}`
           }
