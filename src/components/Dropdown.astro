@@ -1,125 +1,119 @@
 ---
 import { ChevronDown } from '@lucide/astro';
-import "../styles/header.css"
+import '../styles/header.css';
 
 export interface Props {
-  label: string;
-  icon?: any
+  label?: string;
+  icon?: any;
 }
-const { label, icon: Icon } = Astro.props;
+
+const { label = 'Menu', icon: Icon } = Astro.props;
 ---
 
-<div class="dropdown-container">
-  <a href="#" class="dropdown-toggle">
-    {Icon && <Icon size={18} stroke-width={1}/>}
+<div class="nav-item dropdown">
+  <button class="dropdown-toggle" aria-expanded="false">
+    {Icon && <Icon size={18} stroke-width={1} class="icon"/>}
     <span>{label}</span>
-    <ChevronDown size={16} color="#AAA"/> 
-  </a>
-  <div class="dropdown-menu">
-    <ul>
-      <slot />
-    </ul>
-  </div>
+    <ChevronDown class="icon chevron" size={16}/>
+  </button>
+
+  <ul class="dropdown-menu">
+    <li><a href="#">Option 1</a></li>
+    <li><a href="#">Option 2</a></li>
+    <li><a href="#">Option 3</a></li>
+    <li><a href="#">Other</a></li>
+  </ul>
 </div>
 
 <style>
-  .dropdown-container {
+  .dropdown { 
     position: relative;
   }
 
-  /* .dropdown-toggle {
-    display: flex;
+  .dropdown-toggle {
+    display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    text-decoration: none;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    border: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.2s;
     color: #333;
-    font-size: 0.9rem;
-    font-weight: bold;
+  }
+  .dropdown-toggle:hover { 
+    color: var(--accent, #a39b60);
+  }
+  .dropdown-toggle span {
+    font-size: 0.925rem;
+    font-weight: normal;
     text-transform: uppercase;
-    transition: color 0.3s ease;
-  } */
+  }
 
-  /* .dropdown-toggle:hover {
+  .chevron {
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  .icon {
     color: #888;
-  } */
+  }
 
   .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(0.5rem); /* Add a small vertical offset */
-    margin-top: 1rem;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    min-width: 150px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    z-index: 10;
-  }
-
-  .dropdown-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .dropdown-menu ul {
+    z-index: 100;
+    margin-top: 0.5rem;
+    min-width: 180px;
+    padding: 0.4rem 0;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
     list-style: none;
-    padding: 0.5rem 0;
-    margin: 0;
+
+    opacity: 0;
+    transform: translateX(-50%) scale(0.95);
+    visibility: hidden;
+    transition:
+      opacity  .25s cubic-bezier(.4,0,.2,1),
+      transform .25s cubic-bezier(.4,0,.2,1),
+      visibility .25s;
   }
+
+  .dropdown.open .dropdown-menu {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    visibility: visible;
+  }
+  .dropdown.open .chevron { transform: rotate(180deg); }
 
   .dropdown-menu a {
     display: block;
     padding: 0.5rem 1rem;
     color: #333;
     text-decoration: none;
-    text-transform: capitalize;
+    font-size: 0.925rem;
+    transition: background .15s;
   }
-
-  .dropdown-menu a:hover {
-    background-color: #f0f0f0;
-  }
-
-  .dropdown-toggle .lucide-icon {
-    color: #888;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .dropdown-container.is-active .lucide-icon {
-    transform: rotate(180deg);
-  }
+  .dropdown-menu a:hover { background: #f5f5f5; }
 </style>
 
 <script>
-  const toggleLinks = document.querySelectorAll('.dropdown-toggle');
-  
-  toggleLinks.forEach(toggleLink => {
-    const parent = toggleLink.closest('.dropdown-container');
-    const dropdownMenu = parent!.querySelector('.dropdown-menu');
+  document.querySelectorAll('.dropdown-toggle').forEach(button => {
+    const li = button.closest('.dropdown') as HTMLLIElement;
 
-    toggleLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isActive = parent!.classList.contains('is-active');
+    button.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = li.classList.contains('open');
+      document.querySelectorAll('.dropdown.open').forEach(d => d !== li && d.classList.remove('open'));
+      li.classList.toggle('open', !open);
+      button.setAttribute('aria-expanded', String(!open));
+    });
+  });
 
-      // Close all other dropdowns
-      document.querySelectorAll('.dropdown-container.is-active').forEach(openDropdown => {
-        if (openDropdown !== parent) {
-          openDropdown.classList.remove('is-active');
-        }
-      });
-      
-      // Toggle the current dropdown
-      parent!.classList.toggle('is-active', !isActive);
-    });
-    
-    // Close dropdown on outside click
-    document.addEventListener('click', (e) => {
-      if (!parent!.contains(e.target as any)) {
-        parent!.classList.remove('is-active');
-      }
-    });
+  addEventListener('click', () => {
+    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('.dropdown-toggle[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
   });
 </script>

@@ -163,7 +163,6 @@
     }
   }
 
-  /* Responsive styles for full-type card */
   @media (max-width: 768px) {
     .card.full {
       flex-direction: column;
