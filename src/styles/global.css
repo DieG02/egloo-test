@@ -1,7 +1,13 @@
+@import url('./variables.css');
+
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   padding: 0px;
   margin: 0px;
-  background-color: #F4F3ED;
+  background-color: var(--background);
   position: relative;
   top: 0;
   left: 0;
@@ -27,7 +33,7 @@ main {
 .box-title h2 {
   font-size: 1.25rem;
   font-weight: 500;
-  color: #555
+  color: #555555
 }
 
 .card-container {
@@ -36,7 +42,42 @@ main {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
 }
-.card-item {
-  grid-column: 1fr;
-  background-color: white;
+
+/* For tablets and larger screens [1024px] */
+@media (max-width: 1024px) {
+  main {
+    margin: 6rem auto;
+  }
+
+  .box-title h1 {
+    font-size: 2.5rem;
+  }
+  .box-title h2 {
+    font-size: 1rem;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* For small screens [768px] */
+@media (max-width: 768px) {
+   main {
+     padding: 0 2rem;
+     margin: 4rem auto;
+  }
+
+
+  .box-title h1 {
+    font-size: 2rem;
+  }
+  .box-title h2 {
+    font-size: 1rem;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }

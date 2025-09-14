@@ -1,170 +1,167 @@
- .card {
-    overflow: hidden;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    &.full {
-      grid-column: 1 / -1;
-      flex-direction: row;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-areas: "image image content"; 
-      gap: 1rem;
-    }
+.card {
+  display: flex;
+  overflow: hidden;
+  background-color: white;
+  flex-direction: column;
+  
+  &.full {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "image image content"; 
   }
+}
 
-  .card-image-container {
+.card-image-container {
+  width: 100%;
+  overflow: hidden;
+  grid-area: placeholder;
+  
+  img {
     width: 100%;
-    overflow: hidden;
-    grid-area: placeholder;
-   
-    img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      display: block;
-    }
+    object-fit: cover;
+    display: block;
   }
+}
 
-  .full .card-image-container {
+.full {
+  .card-image-container {
     display: flex;
-    background: #000;
+    background: black;
     grid-column: span 2;
     grid-row: 1;
     max-height: 400px;
-  }
-
-  .full .card-image-container img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
   
-  .card-content {
-    grid-area: content;
-    padding: 1.25rem;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+}
+
+
+.card-content {
+  grid-area: content;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.card-icons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--icon);
+}
+
+.card-icons > span {
+  margin-left: 0.25rem;
+  font-weight: 300;
+  color: var(--text);
+}
+
+.icon-wrapper {
+  display: flex;
+  margin-right: 0.5rem;
+}
+
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-family: "Federo", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.divider {
+  height: 1px;
+  background-color: #AAAAAA;
+  border: none;
+  margin: 0.4rem 0;
+}
+
+.content-description {
+  color: var(--text);
+  font-weight: 300;
+}
+
+.price-section {
+  margin-bottom: 2rem;
+}
+.price-section p {
+  margin: 0.6rem 0rem;
+}
+
+.price-section p:first-child {
+  color: var(--icon);
+}
+.price-section p:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.price-value {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.price-badge {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  background-color: var(--shadow);
+  padding: 0.3rem 0.6rem;
+  font-weight: 300;
+  margin-left: auto;
+}
+
+.button-container {
+  display: flex;
+  margin-top: auto;
+  font-optical-sizing: auto;
+}
+
+.details-button {
+  background-color: white;
+  color: var(--text);
+  border: var(--text) solid 1px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease;
+
+  font-family: "EB Garamond", serif;
+  font-weight: 500;
+
+  &:hover {
+    background-color: var(--placeholder);
+  }
+}
+
+@media (max-width: 768px) {
+  .card.full {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
   }
-
-  .card.full .card-content {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  .card-icons {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: #999;
-  }
-
-  .card-icons > span {
-    margin-left: 0.25rem;
-    font-weight: 300;
-    color: #333
-  }
-
-  .icon-wrapper {
-    display: flex;
-    margin-right: 0.5rem;
-  }
-
-
-  .duration {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    font-family: "Federo", serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  .divider {
-    height: 1px;
-    background-color: #aaa;
-    border: none;
-    margin: 0.4rem 0;
-  }
-
-  .content-description {
-    color: #333;
-    font-weight: 300;
-  }
-  
-  .price-section {
-    margin-bottom: 2rem;
-  }
-  .price-section p {
-    margin: 0.6rem 0rem;
-  }
-
-  .price-section p:first-child {
-    color: #888;
-  }
-  .price-section p:last-child {
-    display: flex;
-    justify-content: space-between;
-  }
-
-
-  .price-value {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #444;
-  }
-  
-  .price-badge {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    background-color: #f5f5f5;
-    padding: 0.3rem 0.6rem;
-    font-weight: 300;
-    margin-left: auto;
-  }
-
-  .button-container {
-    display: flex;
-    margin-top: auto;
-    font-optical-sizing: auto;
-  }
-
-  .details-button {
-    background-color: white;
-    color: #333;
-    border: #333 solid 1px;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 1;
-    gap: 0.5rem;
-    transition: background-color 0.3s ease;
-
-    font-family: "EB Garamond", serif;
-    font-weight: 500;
-
-    &:hover {
-      background-color: #ccc;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .card.full {
-      flex-direction: column;
-    }
-  }
+}
