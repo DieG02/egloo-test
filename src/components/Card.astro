@@ -8,6 +8,7 @@ import {
   type AstroComponent  
 } from "@lucide/astro";
 import "../styles/card.css";
+import { Image } from 'astro:assets';
 
 export type Service = "wine" | "food" | "tour";
 
@@ -43,7 +44,13 @@ const icons: Record<Service, AstroComponent> = {
 
 <div class={`card ${type}`}>
   <div class="card-image-container">
-    <img src={image} alt={title} />
+    <Image 
+      src={image} 
+      alt={title}
+      loading="lazy"
+      height={250}
+      inferSize={true}
+    />
   </div>
 
   <div class="card-content">
@@ -74,7 +81,7 @@ const icons: Record<Service, AstroComponent> = {
     </div>
 
     <div class="button-container">
-      <a href="#" class="details-button">
+      <a href="#" class="details-button" aria-label="dettagli">
         Dettagli
         <ArrowRight size={24} stroke-width={1} />
       </a>
